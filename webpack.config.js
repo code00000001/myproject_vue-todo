@@ -28,6 +28,13 @@ module.exports = {
         rules: [{
             test: /\.vue$/,
             loader: 'vue-loader'
+        }, {
+            test: /\.(jpg|jpeg|png|svg)$/,
+            loader: 'url-loader',
+            options: {
+                name: '[name].[ext]',
+                limmit: 2048
+            }
         }]
     },
 
