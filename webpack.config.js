@@ -6,6 +6,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 //导出一个对象
 module.exports = {
+    mode: 'development',
     //打包入口
     entry: './src/main.js',
 
@@ -34,5 +35,14 @@ module.exports = {
     plugins: [
         //实例化刚刚导入的插件对象
         new VueLoaderPlugin()
-    ]
+    ],
+
+    //vue打包默认生成的是运行时版本文件vue.common.js，runtime only, 要改为编译xompiler和运行时runtimeonly文件，vue.js, 就要取一个别名
+    //导入Vue包的时候去加载vue/dist/vue.js
+    resolve: {
+        alias: {
+            'vue': 'vue/dist/vue.js'
+        }
+    }
+
 }
