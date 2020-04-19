@@ -33,8 +33,18 @@ module.exports = {
             loader: 'url-loader',
             options: {
                 name: '[name].[ext]',
-                limmit: 2048
+                limmit: 20480000
             }
+        }, {
+            test: /\.css$/,
+            //css-loader：把所有的css文件打包成一个文件
+            //style-loader:讲css-loder打包后的文件挂载到页面head标签的style中
+            use: ['style-loader', 'css-loader']
+        }, {
+            test: /\.styl(us)?$/,
+            //stylus: 将stylus文件编译成css格式
+            //stylus-loader: 加载stylus文件，调用stylus预处理程序编译成css格式文件
+            use: ['style-loader', 'css-loader', 'stylus-loader']
         }]
     },
 
