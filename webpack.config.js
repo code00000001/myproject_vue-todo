@@ -4,6 +4,9 @@ const path = require('path')
 //导入vue-loader的插件VueLoaderPlugin
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
+//导入HtmlWebpackPlugin插件
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 //导出一个对象
 module.exports = {
     mode: 'development',
@@ -33,7 +36,7 @@ module.exports = {
             loader: 'url-loader',
             options: {
                 name: '[name].[ext]',
-                limmit: 20480000
+                limmit: 2048
             }
         }, {
             test: /\.css$/,
@@ -44,14 +47,18 @@ module.exports = {
             test: /\.styl(us)?$/,
             //stylus: 将stylus文件编译成css格式
             //stylus-loader: 加载stylus文件，调用stylus预处理程序编译成css格式文件
-            use: ['style-loader', 'css-loader', 'stylus-loader']
+            use: ['vue-style-loader', 'css-loader', 'stylus-loader']
         }]
     },
 
     //配置插件数组  
     plugins: [
         //实例化刚刚导入的插件对象
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        //实例化对象
+        new HtmlWebpackPlugin({
+            template: './index.html'
+        })
     ],
 
     //vue打包默认生成的是运行时版本文件vue.common.js，runtime only, 要改为编译xompiler和运行时runtimeonly文件，vue.js, 就要取一个别名
