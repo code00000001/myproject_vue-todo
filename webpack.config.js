@@ -7,6 +7,8 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 //导入HtmlWebpackPlugin插件
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+
 //导出一个对象
 module.exports = {
     mode: 'development',
@@ -15,7 +17,7 @@ module.exports = {
 
     //打包出口
     output: {
-        filename: 'bundle.js',
+        filename: 'main.js',
         //要用绝对路径, __dirname当前文件路径下的dist文件里，打包生成bundle.js，
         //然后就用npx webpack命令，这个命令的意思是在当前目录下去找node_modules里面的webpack去执行
         //然后webpack就是加载webpack.config.js， 根据指定的入口和出口，来生成对应的文件
@@ -58,7 +60,8 @@ module.exports = {
         //实例化对象
         new HtmlWebpackPlugin({
             template: './index.html'
-        })
+        }),
+        new CleanWebpackPlugin()
     ],
 
     //vue打包默认生成的是运行时版本文件vue.common.js，runtime only, 要改为编译xompiler和运行时runtimeonly文件，vue.js, 就要取一个别名
