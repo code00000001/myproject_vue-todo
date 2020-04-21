@@ -49,7 +49,12 @@ module.exports = {
             test: /\.styl(us)?$/,
             //stylus: 将stylus文件编译成css格式
             //stylus-loader: 加载stylus文件，调用stylus预处理程序编译成css格式文件
-            use: ['vue-style-loader', 'css-loader', 'stylus-loader']
+            use: [
+                'vue-style-loader', 
+                'css-loader', 
+                'postcss-loader',
+                'stylus-loader'
+            ]
         }]
     },
 
