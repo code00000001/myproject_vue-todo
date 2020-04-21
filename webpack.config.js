@@ -15,6 +15,12 @@ module.exports = {
     //打包入口
     entry: './src/main.js',
 
+    //开发环境配置
+    devServer: {
+        contentBase: './dist',
+        open: true
+    },
+
     //打包出口
     output: {
         filename: 'main.js',

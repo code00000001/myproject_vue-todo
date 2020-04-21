@@ -23,5 +23,4 @@ export default {
 <style lang='stylus' scoped>
 h1
     color: red
-    transform: translate(100px,100px)
 </style>
