@@ -7,7 +7,10 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 //导入HtmlWebpackPlugin插件
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+
+//导入webpack
+const webpack = require('webpack')
 
 //导出一个对象
 module.exports = {
@@ -18,7 +21,9 @@ module.exports = {
     //开发环境配置
     devServer: {
         contentBase: './dist',
-        open: true
+        open: true,
+        //热部署
+        hot: true
     },
 
     //打包出口
@@ -56,8 +61,8 @@ module.exports = {
             //stylus: 将stylus文件编译成css格式
             //stylus-loader: 加载stylus文件，调用stylus预处理程序编译成css格式文件
             use: [
-                'vue-style-loader', 
-                'css-loader', 
+                'vue-style-loader',
+                'css-loader',
                 'postcss-loader',
                 'stylus-loader'
             ]
@@ -72,7 +77,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './index.html'
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+
+        //实例化热部署插件(热模块替换)
+        new webpack.HotModuleReplacementPlugin()
     ],
 
     //vue打包默认生成的是运行时版本文件vue.common.js，runtime only, 要改为编译xompiler和运行时runtimeonly文件，vue.js, 就要取一个别名
