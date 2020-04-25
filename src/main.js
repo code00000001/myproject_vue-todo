@@ -15,5 +15,4 @@ new Vue({
     template: '<App/>'
 })
 
-
 //2.挂载App组件

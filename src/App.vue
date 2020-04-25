@@ -42,5 +42,5 @@ export default {
 h1
     color: red
 li:nth-of-type(odd)
-    color: blue
+    color: red
 </style>

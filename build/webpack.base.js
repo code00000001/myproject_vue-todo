@@ -9,22 +9,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
-//导入webpack
-const webpack = require('webpack')
 
 //导出一个对象
 module.exports = {
-    mode: 'development',
     //打包入口
     entry: './src/main.js',
-
-    //开发环境配置
-    devServer: {
-        contentBase: './dist',
-        open: true,
-        //热部署
-        hot: true
-    },
 
     //打包出口
     output: {
@@ -33,7 +22,7 @@ module.exports = {
         //然后就用npx webpack命令，这个命令的意思是在当前目录下去找node_modules里面的webpack去执行
         //然后webpack就是加载webpack.config.js， 根据指定的入口和出口，来生成对应的文件
         //或者在package.json里编写脚本命令，"build": webpack, 就可以用npm run build命令了
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, '../dist')
     },
 
     //配置打包规则module是个对象，rules是数组，因为打包规则有很多条,数组里是对象，每个对象就对应了一个打包规则
@@ -77,10 +66,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './index.html'
         }),
-        new CleanWebpackPlugin(),
-
-        //实例化热部署插件(热模块替换)
-        new webpack.HotModuleReplacementPlugin()
+        new CleanWebpackPlugin()
     ],
 
     //vue打包默认生成的是运行时版本文件vue.common.js，runtime only, 要改为编译xompiler和运行时runtimeonly文件，vue.js, 就要取一个别名
