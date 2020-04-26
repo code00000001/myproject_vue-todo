@@ -79,7 +79,9 @@ module.exports = {
     //导入Vue包的时候去加载vue/dist/vue.js
     resolve: {
         alias: {
-            'vue': 'vue/dist/vue.js'
+            'vue': 'vue/dist/vue.js',
+            '@': path.resolve(__dirname, '../src'),
+            'styles': path.resolve(__dirname, '../src/assets/styles')
         }
     }
 

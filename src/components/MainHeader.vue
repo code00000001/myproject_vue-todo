@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="main-header">
     <h1>
       ToDoList
     </h1>
@@ -13,11 +13,14 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@import '~styles/theme.styl';
 .main-header
   text-align: center
+
   h1
+    margin 20px
     font-size: 100px
     font-weight: 100
-    color: rgb(252,157,154)
-    text-shadow: 5px 5px 5px rgba(0,0,0,0.1)
+    color: $lightred
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1)
 </style>
