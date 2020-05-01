@@ -1,7 +1,8 @@
 <template>
   <div class="todo-item">
     <input type="checkbox" />
-    <label>todo1</label>
+    <!-- {{}}这个表达式就可以显示todo参数的内容了 -->
+    <label>{{ todo.content }}</label>
     <button></button>
   </div>
 </template>
@@ -9,6 +10,10 @@
 <script>
 export default {
   name: "TodoItem",
+  // 这里接收父组件传递过来的参数，todo
+  props: {
+    todo: Object,
+  },
 };
 </script>
 
@@ -21,6 +26,7 @@ export default {
   justify-content: space-between
   padding: 10px
   font-size 24px
+  border-top 1px solid rgba(0,0,0,.1)
 
   &:hover
     button:after
