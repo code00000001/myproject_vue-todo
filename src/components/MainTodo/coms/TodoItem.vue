@@ -1,9 +1,11 @@
 <template>
-  <div class="todo-item">
-    <input type="checkbox" />
+  <div :class="['todo-item', todo.complated ? 'complated' : '']">
+    <input type="checkbox" v-model="todo.complated" />
     <!-- {{}}这个表达式就可以显示todo参数的内容了 -->
     <label>{{ todo.content }}</label>
-    <button></button>
+    <!-- 子组件传递方法传递参数到父组件,因为数据在父组件上，而触发方法在子组件上，所以要用到这种操作方式 -->
+    <!-- 1、在子组件定义方法delItem -->
+    <button @click="delItem"></button>
   </div>
 </template>
 
@@ -13,6 +15,12 @@ export default {
   // 这里接收父组件传递过来的参数，todo
   props: {
     todo: Object,
+  },
+  methods: {
+    delItem() {
+      // 2、通过$emit触发一个事件del, 这个时间会在父组件上监听@del='handleDeleteItem', 并且传递参数this.todo.id, 这个todo实际上就是父组件传递过来的item
+      this.$emit("del", this.todo.id);
+    },
   },
 };
 </script>
