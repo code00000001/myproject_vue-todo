@@ -2,9 +2,14 @@
   <div class="todo-info">
     <span class="total">1 item left</span>
     <div class="tabs">
-      <a v-for="(item, index) in states" :key="index">{{ item }}</a>
+      <a
+        class="btn primary border"
+        v-for="(item, index) in states"
+        :key="index"
+        >{{ item }}</a
+      >
     </div>
-    <button class="clear">Clear complated</button>
+    <button class="btn info">Clear complated</button>
   </div>
 </template>
 
@@ -21,6 +26,7 @@ export default {
 
 <style lang="stylus" scoped>
 @import '~styles/theme.styl'
+@import '~styles/mixins.styl'
 
 .todo-info
   display flex
@@ -37,19 +43,10 @@ export default {
     justify-content space-between
     width 300px
 
-    a
-      padding 0 10px
-      border 1px solid $lightred
-      border-radius 5px
-      &.actived
-        background-color $lightred
-        color #fff
-  .clear
-    padding  0 10px
-    background-color $green
-    border-radius 5px
-    color #fff
-    appearance none
-    border none
-    outline none
+  .btn.primary.border
+    primaryBorderBtn()
+    &.actived
+      primaryBtn()
+  .btn.info
+    infoBtn()
 </style>
