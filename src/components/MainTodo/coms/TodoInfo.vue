@@ -12,7 +12,7 @@
         >{{ item }}</a
       >
     </div>
-    <button class="btn info">Clear complated</button>
+    <button class="btn info" @click="clearComplated">Clear complated</button>
   </div>
 </template>
 
@@ -35,6 +35,9 @@ export default {
       this.state = state;
       // 4、触发方法$emit传递参数给父组件,方法名toggleState, 参数state
       this.$emit("toggleState", state);
+    },
+    clearComplated() {
+      this.$emit("clearComplated");
     },
   },
 };

@@ -17,7 +17,11 @@
       @del="handleDeleteItem"
     ></todo-item>
     <!-- 父组件数据传递给子组件:total是定义在子组件里的变量，"total"是父组件里定义的变量 -->
-    <todo-info :total="total" @toggleState="handleToggleState"></todo-info>
+    <todo-info
+      :total="total"
+      @toggleState="handleToggleState"
+      @clearComplated="handleClear"
+    ></todo-info>
   </div>
 </template>
 
@@ -59,6 +63,9 @@ export default {
     },
     handleToggleState(state) {
       this.filter = state;
+    },
+    handleClear() {
+      this.todoData = this.todoData.filter((item) => item.complated == false);
     },
   },
   // 统计功能用到监听器watch
