@@ -16,7 +16,8 @@
       :todo="item"
       @del="handleDeleteItem"
     ></todo-item>
-    <todo-info></todo-info>
+    <!-- 父组件数据传递给子组件:total是定义在子组件里的变量，"total"是父组件里定义的变量 -->
+    <todo-info :total="total"></todo-info>
   </div>
 </template>
 
@@ -31,6 +32,7 @@ export default {
     return {
       todoData: [],
       content: "",
+      total: 0,
     };
   },
   methods: {
@@ -52,6 +54,19 @@ export default {
         this.todoData.findIndex((item) => item.id === id),
         1
       );
+    },
+  },
+  // 统计功能用到监听器watch
+  watch: {
+    todoData: {
+      deep: true,
+      // 当todoData数据变化的时候就会调用handler里的函数方法,再把数据传递给子组件
+      handler() {
+        // 过滤出所有没有完成的待办事项item =>
+        this.total = this.todoData.filter(
+          (item) => item.complated == false
+        ).length;
+      },
     },
   },
   //挂载组件

@@ -1,6 +1,6 @@
 <template>
   <div class="todo-info">
-    <span class="total">1 item left</span>
+    <span class="total">{{ total }} item left</span>
     <div class="tabs">
       <a
         class="btn primary border"
@@ -16,6 +16,10 @@
 <script>
 export default {
   name: "TodoInfo",
+  // props接收父组件传递过来的数据
+  props: {
+    total: Number,
+  },
   data() {
     return {
       states: ["all", "active", "complated"],
