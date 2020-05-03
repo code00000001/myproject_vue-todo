@@ -34,7 +34,7 @@ export default {
   justify-content: space-between
   padding: 10px
   font-size 24px
-  border-top 1px solid rgba(0,0,0,.1)
+  border-top 1px solid rgba(0,0,0,0.1)
 
   &:hover
     button:after

@@ -16,11 +16,13 @@
       :todo="item"
       @del="handleDeleteItem"
     ></todo-item>
+    <todo-info></todo-info>
   </div>
 </template>
 
 <script>
 import TodoItem from "./coms/TodoItem.vue";
+import TodoInfo from "./coms/TodoInfo.vue";
 let id = 0;
 export default {
   //引入子组件
@@ -55,6 +57,7 @@ export default {
   //挂载组件
   components: {
     TodoItem: TodoItem,
+    TodoInfo: TodoInfo,
   },
 };
 </script>
