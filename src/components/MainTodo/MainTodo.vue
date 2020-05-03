@@ -11,13 +11,13 @@
     <!-- 父组件MainTodo.vue传递参数给子组件TodoItem.vue，通过 :todo="item"(item对象给到todo) ，然后子组件通过props接收参数-->
     <!-- 3、在同一个地方，监听子组件传递过来的事件del， 在这里的方法实际上可以省略写（）的，只要在methods里定义的时候用（）接收即可 -->
     <todo-item
-      v-for="(item, index) in todoData"
+      v-for="(item, index) in filterData"
       :key="index"
       :todo="item"
       @del="handleDeleteItem"
     ></todo-item>
     <!-- 父组件数据传递给子组件:total是定义在子组件里的变量，"total"是父组件里定义的变量 -->
-    <todo-info :total="total"></todo-info>
+    <todo-info :total="total" @toggleState="handleToggleState"></todo-info>
   </div>
 </template>
 
@@ -33,6 +33,8 @@ export default {
       todoData: [],
       content: "",
       total: 0,
+      // 子组件传递过来的参数默认为all
+      filter: "all",
     };
   },
   methods: {
@@ -55,6 +57,9 @@ export default {
         1
       );
     },
+    handleToggleState(state) {
+      this.filter = state;
+    },
   },
   // 统计功能用到监听器watch
   watch: {
@@ -67,6 +72,23 @@ export default {
           (item) => item.complated == false
         ).length;
       },
+    },
+  },
+  computed: {
+    //filterData返回todoData改变后的数据，根据filter的变化
+    // 最后把todoData换成filterData
+    filterData() {
+      switch (this.filter) {
+        case "all":
+          return this.todoData;
+          break;
+        case "active":
+          return this.todoData.filter((item) => item.complated == false);
+          break;
+        case "complated":
+          return this.todoData.filter((item) => item.complated == true);
+          break;
+      }
     },
   },
   //挂载组件

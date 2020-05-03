@@ -2,10 +2,13 @@
   <div class="todo-info">
     <span class="total">{{ total }} item left</span>
     <div class="tabs">
+      <!-- 2、定义切换样式事件 -->
+      <!-- 3、:class绑定样式 -->
       <a
-        class="btn primary border"
+        :class="['btn', 'primary', 'border', state == item ? 'actived' : '']"
         v-for="(item, index) in states"
         :key="index"
+        @click="toggleState(item)"
         >{{ item }}</a
       >
     </div>
@@ -23,7 +26,16 @@ export default {
   data() {
     return {
       states: ["all", "active", "complated"],
+      // 状态切换功能实现，1、设置states的默认样式all
+      state: "all",
     };
+  },
+  methods: {
+    toggleState(state) {
+      this.state = state;
+      // 4、触发方法$emit传递参数给父组件,方法名toggleState, 参数state
+      this.$emit("toggleState", state);
+    },
   },
 };
 </script>
